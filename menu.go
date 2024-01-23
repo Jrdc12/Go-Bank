@@ -10,13 +10,36 @@ func RunBank(account *Account) {
 	for !exitMenu {
 		fmt.Println("Please select an option:")
 
-		fmt.Println("1. Deposit")
-		fmt.Println("2. Withdraw")
-		fmt.Println("3. Balance")
+		fmt.Println("1. Check Balance")
+		fmt.Println("2. Deposit")
+		fmt.Println("3. Withdraw")
 		fmt.Println("4. Exit")
 
 		var choice int
 		fmt.Print("Enter your choice: ")
 		fmt.Scan(&choice)
+
+		switch choice {
+		case 1:
+			fmt.Println("Your balance is: ", account.Balance())
+		case 2:
+			fmt.Print("Enter amount to deposit: ")
+			var amount float64
+			fmt.Scan(&amount)
+			account.Deposit(amount)
+		case 3:
+			fmt.Print("Enter amount to withdraw: ")
+			var amount float64
+			fmt.Scan(&amount)
+			if err := account.Withdraw(amount); err != nil {
+				fmt.Println(err)
+			}
+		case 4:
+			fmt.Println("Thank you for using Go bank!")
+			exitMenu = true
+		default:
+			fmt.Println("Invalid choice.")
+		}
+
 	}
 }
