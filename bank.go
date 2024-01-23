@@ -3,7 +3,7 @@ package main
 import "fmt"
 
 type Account struct {
-	balance float64
+	balance float64 
 }
 
 func NewAccount(initialBalance float64) *Account {

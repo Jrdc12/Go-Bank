@@ -22,11 +22,13 @@ func RunBank(account *Account) {
 		switch choice {
 		case 1:
 			fmt.Println("Your balance is: ", account.Balance())
+			readBalanceFromFile(account)
 		case 2:
 			fmt.Print("Enter amount to deposit: ")
 			var amount float64
 			fmt.Scan(&amount)
 			account.Deposit(amount)
+			writeBalanceToFile(account)
 		case 3:
 			fmt.Print("Enter amount to withdraw: ")
 			var amount float64
@@ -34,6 +36,7 @@ func RunBank(account *Account) {
 			if err := account.Withdraw(amount); err != nil {
 				fmt.Println(err)
 			}
+			writeBalanceToFile(account)
 		case 4:
 			fmt.Println("Thank you for using Go bank!")
 			exitMenu = true
